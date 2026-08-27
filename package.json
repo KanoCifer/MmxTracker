@@ -12,7 +12,10 @@
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox",
     "compile": "tsc --noEmit",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -31,6 +34,7 @@
     "@types/react-dom": "^19.2.3",
     "@wxt-dev/module-react": "^1.1.5",
     "typescript": "^7.0.2",
+    "vitepress": "2.0.0-alpha.19",
     "web-ext": "^10.5.0",
     "wxt": "^0.21.4"
   }

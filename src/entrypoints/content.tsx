@@ -10,7 +10,8 @@ export default defineContentScript({
   async main(ctx) {
     const ui = await createShadowRootUi(ctx, {
       name: 'mmxtracker-widget',
-      position: 'modal',
+
+      position: 'overlay',
       zIndex: 2147483647,
       anchor: 'body',
       append: 'after',
@@ -19,12 +20,16 @@ export default defineContentScript({
         if (shadowHost) {
           shadowHost.style.position = 'fixed';
           shadowHost.style.zIndex = '2147483647';
-          shadowHost.style.display = 'block';
+          shadowHost.style.top = '0';
+          shadowHost.style.left = '0';
           shadowHost.style.width = '0';
           shadowHost.style.height = '0';
           shadowHost.style.overflow = 'visible';
+          shadowHost.style.pointerEvents = 'none';
         }
         const app = document.createElement('div');
+
+        app.style.pointerEvents = 'auto';
         container.append(app);
         const root = createRoot(app);
         root.render(<FloatWidget />);
@@ -36,7 +41,6 @@ export default defineContentScript({
     });
 
     ui.mount();
-    ui.autoMount();
     ctx.onInvalidated(() => ui.remove());
   },
 });
