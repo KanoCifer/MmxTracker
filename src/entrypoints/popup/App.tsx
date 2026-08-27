@@ -1,6 +1,8 @@
-import { Flame, RefreshCw, TrendingUp, ExternalLink } from 'lucide-react';
+import { RefreshCw, TrendingUp, ExternalLink } from 'lucide-react';
 import { useUsage } from '@/lib/useUsage';
+import { deriveWidgetSignals } from '@/lib/derive';
 import { QuotaMeter } from './QuotaMeter';
+import mascotUrl from '@/assets/mmx.png';
 import { useState } from 'react';
 import type { UsageSummaryResp } from '@/api/types';
 
@@ -61,14 +63,15 @@ function App() {
 
   // total_token_consumed is already a formatted string like "2.83B" — render it
   // directly, never Number() it (that yields NaN → "0").
-  const consumed = summary?.total_token_consumed ?? '—';
+  const signals = deriveWidgetSignals(summary, remain);
+  const consumed = signals.consumed;
   const main = summary ? topModel(summary.date_model_usage) : null;
 
   return (
     <div className="mx-auto flex min-h-screen max-w-sm flex-col px-4 py-4">
       <header className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Flame className="text-ember h-4 w-4" aria-hidden />
+          <img src={mascotUrl} alt="" className="h-4 w-4" />
           <span className="text-ink text-sm font-semibold tracking-tight">MmxTracker</span>
         </div>
         <span className="border-line bg-surface text-ink2 rounded-full border px-2 py-0.5 text-[10px]">
@@ -97,7 +100,7 @@ function App() {
       )}
 
       {/* Quota bars */}
-      {remain?.model_remains && <QuotaMeter models={remain.model_remains} />}
+      {signals.models.length > 0 && <QuotaMeter models={signals.models} />}
 
       {/* Footer stats */}
       {summary && (

@@ -20,8 +20,8 @@ const HIDDEN_BY_DEFAULT = new Set(['video']);
 
 /** Map the API status code to a label + color. 1 = active, 3 = interval over, else muted. */
 export function statusLabel(status: number): { text: string; className: string } {
-  if (status === 1) return { text: '进行中', className: 'text-ink2' };
-  if (status === 3) return { text: '已至边界', className: 'text-amber' };
+  if (status === 1) return { text: '还有余量', className: 'text-ink2' };
+  if (status === 3) return { text: '用量充足', className: 'text-amber' };
   return { text: '暂停', className: 'text-amber' };
 }
 
