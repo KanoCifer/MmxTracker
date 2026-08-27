@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+/*
+ * MmxTracker design tokens.
+ * Dark token-burn instrument: near-black canvas, ember accent = consumed,
+ * mint = remaining. All counting figures use --font-mono + tabular-nums.
+ */
+@theme {
+  --color-canvas: #0a0b0d;
+  --color-surface: #14161a;
+  --color-surface2: #1b1f26;
+  --color-line: #262b32;
+  --color-ink: #f0f2f5;
+  --color-ink2: #a4acbb;
+  --color-ink3: #5f6878;
+  --color-ember: #ff7a3d;
+  --color-mint: #46d1a8;
+  --color-amber: #ffb454;
+  --color-red: #ff5f56;
+
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', 'PingFang SC', 'Noto Sans SC',
+    'Microsoft YaHei', sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, 'Cascadia Code', 'JetBrains Mono', Menlo, monospace;
+}
+
+/*
+ * @theme only emits :root, which does NOT reach the widget's shadow DOM.
+ * Re-declare the same tokens on :host so shadow-root utilities resolve.
+ * Values mirror @theme above; keep them in sync.
+ */
+:host {
+  --z-fab: 2147482800;
+  --z-fab-menu: 2147482850;
+  --z-drawer: 2147482900;
+  /* int32 max (0x7FFFFFFF). Anything higher would overflow and behave
+   * unpredictably across engines; this is the practical ceiling. */
+  --z-float: 2147483647;
+  --color-canvas: #0a0b0d;
+  --color-surface: #14161a;
+  --color-surface2: #1b1f26;
+  --color-line: #262b32;
+  --color-ink: #f0f2f5;
+  --color-ink2: #a4acbb;
+  --color-ink3: #5f6878;
+  --color-ember: #ff7a3d;
+  --color-mint: #46d1a8;
+  --color-amber: #ffb454;
+  --color-red: #ff5f56;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  body {
+    margin: 0;
+    min-width: 360px;
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}

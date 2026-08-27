@@ -1,0 +1,59 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "react", "import"],
+  "categories": {
+    "correctness": "error",
+    "perf": "warn"
+  },
+  "rules": {
+    "no-console": [
+      "warn",
+      {
+        "allow": ["error", "warn"]
+      }
+    ],
+    "prefer-const": "error",
+    "no-var": "error",
+    "eqeqeq": [
+      "error",
+      "always",
+      {
+        "null": "ignore"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/consistent-type-definitions": "warn",
+    "import/no-duplicates": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/no-array-index-key": "warn",
+    "import/no-cycle": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react/no-unescaped-entities": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-key": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "react/no-unknown-property": "error",
+    "react/no-namespace": "error",
+    "react/no-string-refs": "error",
+    "react/no-direct-mutation-state": "error",
+    "react/no-find-dom-node": "error",
+    "react/no-is-mounted": "error",
+    "react/no-render-return-value": "error",
+    "react/no-this-in-sfc": "error",
+    "react/no-redundant-should-component-update": "error",
+    "react/require-render-return": "error",
+    "react/no-children-prop": "warn",
+    "react/no-danger": "warn",
+    "react/no-danger-with-children": "warn",
+    "react/display-name": "warn",
+    "react/jsx-no-target-blank": "warn",
+    "react/self-closing-comp": "warn",
+    "react/button-has-type": "warn",
+    "react/jsx-pascal-case": "warn",
+    "eslint/no-await-in-loop": "off"
+  },
+  "env": {
+    "builtin": true
+  }
+}
