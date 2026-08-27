@@ -22,11 +22,11 @@ pnpm compile        # tsc --noEmit 类型检查
 
 ## 项目结构
 
-| 表面 | 入口 | 角色 |
-| --- | --- | --- |
-| Popup | `src/entrypoints/popup/` | 快速总览 |
-| 浮动窗 | `src/entrypoints/content.tsx` + `src/components/widget/` | 常驻烧卡组件 |
-| Options | `src/entrypoints/options/`（待建） | 设置页 |
+| 表面    | 入口                                                     | 角色         |
+| ------- | -------------------------------------------------------- | ------------ |
+| Popup   | `src/entrypoints/popup/`                                 | 快速总览     |
+| 浮动窗  | `src/entrypoints/content.tsx` + `src/components/widget/` | 常驻烧卡组件 |
+| Options | `src/entrypoints/options/`（待建）                       | 设置页       |
 
 ## 架构约定
 
@@ -36,16 +36,25 @@ pnpm compile        # tsc --noEmit 类型检查
 - 网络调用：隔离在 `src/api/`，背景/内容脚本经 RPC（`src/rpc/`）调用，不内联在 UI。
 - `manifest.host_permissions` 必须含 `https://platform.minimaxi.com/*` 与 `https://www.minimaxi.com/*`，否则 fetch 会断。
 
-## 发布
+## 安装
 
-打 `v*` 标签并 push 即可触发 GitHub Actions 自动发布：
+从 [Releases](https://github.com/KanoCifer/MmxTracker/releases) 下载对应浏览器的压缩包（`*.zip`），解压后按以下方式加载：
 
-```bash
-git tag v0.1.0
-git push origin v0.1.0
-```
+### Chrome / Edge
 
-`.github/workflows/release.yml` 会构建 Chrome 与 Firefox 压缩包，并在 Release 中附带 `generate_release_notes` 自动生成的更新说明。
+1. 打开 `chrome://extensions`（Edge 为 `edge://extensions`）。
+2. 右上角开启「开发者模式」。
+3. 把解压后的扩展文件夹**拖入**扩展页面，即可完成安装。
+
+> 说明：Release 提供的是解压版目录（zip 内为已构建的扩展文件夹）。直接拖入扩展页即可加载，无需打包为 `.crx`。
+
+### Firefox
+
+1. 打开 `about:debugging#/runtime/this-firefox`。
+2. 点击「临时载入附加组件」。
+3. 选择解压目录中的 `manifest.json`。
+
+> Firefox 临时载入在重启浏览器后失效；正式分发需提交 Firefox Add-ons。
 
 ## 数据来源
 
