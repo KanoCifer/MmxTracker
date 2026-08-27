@@ -1,12 +1,6 @@
 import { clampPercent, formatRemaining, percentOf } from '@/lib/format';
+import { statusLabel } from '@/lib/derive';
 import type { ModelRemain } from '@/api/types';
-
-/** Map the API status code to a label + color. 1 = active, 3 = interval over, else muted. */
-function statusLabel(status: number): { text: string; className: string } {
-  if (status === 1) return { text: '进行中', className: 'text-ink2' };
-  if (status === 3) return { text: '已至边界', className: 'text-amber' };
-  return { text: '暂停', className: 'text-amber' };
-}
 
 /** A single model's quota bar. Uses the 5h interval window (current_interval_*). */
 function ModelRow({ m }: { m: ModelRemain }) {

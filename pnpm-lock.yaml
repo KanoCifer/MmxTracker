@@ -13,7 +13,7 @@ importers:
         version: 4.3.3(vite@8.2.2(@types/node@26.3.0)(jiti@2.7.0))
       '@webext-core/messaging':
         specifier: ^4.0.0
-        version: 4.0.0
+        version: 4.0.0(@types/chrome@0.2.7)
       axios:
         specifier: ^1.20.0
         version: 1.20.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
@@ -39,6 +39,9 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3
     devDependencies:
+      '@types/chrome':
+        specifier: ^0.2.7
+        version: 0.2.7
       '@types/react':
         specifier: ^19.2.14
         version: 19.2.18
@@ -468,6 +471,9 @@ packages:
   '@topcli/prompts@4.0.0':
     resolution: {integrity: sha512-kkKYPb4k/6kRdnESt77B5vJrrYnYHIYczwv0P1c+tfN/IWEx3KZeKEHoUq7sImIyBEXWdA2uakIroD9pmRJziQ==}
     engines: {node: '>=22.0.0'}
+
+  '@types/chrome@0.2.7':
+    resolution: {integrity: sha512-9kjBozQ+jyDVt1eai3VZqjHDTN95JCuRmbRHOryOltBJmzrTmUw/9r/DznmjRaQ8WlyIfeCA4WNzoj0IvormJA==}
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
@@ -3038,6 +3044,11 @@ snapshots:
 
   '@topcli/prompts@4.0.0': {}
 
+  '@types/chrome@0.2.7':
+    dependencies:
+      '@types/filesystem': 0.0.36
+      '@types/har-format': 1.2.16
+
   '@types/estree@1.0.9': {}
 
   '@types/filesystem@0.0.36':
@@ -3258,9 +3269,11 @@ snapshots:
 
   '@webext-core/match-patterns@2.0.0': {}
 
-  '@webext-core/messaging@4.0.0':
+  '@webext-core/messaging@4.0.0(@types/chrome@0.2.7)':
     dependencies:
       '@aklinker1/zero-serialize-error': 1.0.2
+    optionalDependencies:
+      '@types/chrome': 0.2.7
 
   '@wxt-dev/browser@0.2.7':
     dependencies:

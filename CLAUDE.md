@@ -24,6 +24,10 @@ Browser extension (WXT + React + TypeScript) for **MiniMax Token Plan** users to
 - **Messaging**: `wxt.sendMessage(...)` from any context; handle in `defineBackground`.
 - Entrypoints are file-based: a file/dir name like `options/index.html` auto-registers an options page.
 
+## Comments
+
+Comments earn their line by carrying a **why** the code can't: an invisible constraint, a non-obvious gotcha, the reason behind a surprising choice, a `ponytail:` ceiling marker. Delete anything that just paraphrases the next line ("increment counter by 1"), decorates sections without adding information, or restates a name the symbol already gave. Self-explanatory code reads better without the caption.
+
 ## Commands
 
 `pnpm dev` (HMR) · `pnpm build` · `pnpm zip` · `pnpm compile` (tsc --noEmit). See `package.json`.

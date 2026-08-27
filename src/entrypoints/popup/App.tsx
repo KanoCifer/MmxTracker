@@ -1,6 +1,6 @@
 import { Flame, RefreshCw, TrendingUp } from 'lucide-react';
-import { useUsage } from '@/lib/useRemain';
-import { QuotaMeter } from '@/components/QuotaMeter';
+import { useUsage } from '@/lib/useUsage';
+import { QuotaMeter } from './QuotaMeter';
 import { useState } from 'react';
 import type { UsageSummaryResp } from '@/api/types';
 

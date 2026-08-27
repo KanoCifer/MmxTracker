@@ -1,7 +1,6 @@
 /**
- * Shared types for the floating widget pieces.
- * Pulled into their own file so each subcomponent can import without
- * pulling in the entire FloatWidget tree.
+ * Shared types for the derivation core. Pulled into their own file so each
+ * surface (widget / popup / badge) can import without pulling in a tree.
  */
 
 export type Tone = 'mint' | 'amber' | 'ember' | 'red';
@@ -15,8 +14,7 @@ export interface RefreshState {
 /** A single model's 5h-window quota, derived for display. */
 export interface ModelSignal {
   name: string;
-  usedPct: number; // clamped 0–100
-  unlimited: boolean; // current_interval_total_count === -1
+  usedPct: number; // clamped 0–100; the api reports this even when total_count is -1
   statusText: string;
   statusClassName: string;
   remainingText: string;
@@ -38,6 +36,7 @@ export interface WidgetSignals {
   worstUsedPct: number; // max 5h used% across models
   tone: Tone; // pickTone(worstUsedPct)
   models: ModelSignal[];
+  secondaryModels: ModelSignal[]; // hidden by default; surfaced via "show more"
   weekly: WeeklySignal | null;
   nextResetMs: number | null; // earliest active interval end_time
 }

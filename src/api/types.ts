@@ -9,7 +9,7 @@ export interface ModelRemain {
   start_time: number;
   end_time: number;
   remains_time: number;
-  // Counts use -1 to mean "not applicable / unlimited".
+  // Counts use -1 to mean "count untracked" — still get a real used_percent.
   current_interval_total_count: number;
   current_interval_used_count: number;
   current_interval_remains_count: number;
