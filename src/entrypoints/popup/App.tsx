@@ -22,9 +22,9 @@ function topModel(dateModelUsage: UsageSummaryResp['date_model_usage']): { name:
 function HeroStat({ label, value, sub }: { label: string; value: string; sub: string }) {
   return (
     <div className="flex-1">
-      <div className="text-[11px] uppercase tracking-wide text-ink3">{label}</div>
-      <div className="font-mono text-2xl font-semibold leading-tight text-ink tabular-nums">{value}</div>
-      <div className="text-[11px] text-ink2">{sub}</div>
+      <div className="text-ink3 text-[11px] tracking-wide uppercase">{label}</div>
+      <div className="text-ink font-mono text-2xl leading-tight font-semibold tabular-nums">{value}</div>
+      <div className="text-ink2 text-[11px]">{sub}</div>
     </div>
   );
 }
@@ -68,22 +68,22 @@ function App() {
     <div className="mx-auto flex min-h-screen max-w-sm flex-col px-4 py-4">
       <header className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Flame className="h-4 w-4 text-ember" aria-hidden />
-          <span className="text-sm font-semibold tracking-tight text-ink">MmxTracker</span>
+          <Flame className="text-ember h-4 w-4" aria-hidden />
+          <span className="text-ink text-sm font-semibold tracking-tight">MmxTracker</span>
         </div>
-        <span className="rounded-full border border-line bg-surface px-2 py-0.5 text-[10px] text-ink2">
+        <span className="border-line bg-surface text-ink2 rounded-full border px-2 py-0.5 text-[10px]">
           {summary?.last_update_time ?? '同步中'}
         </span>
       </header>
 
       {/* Hero: cumulative consumption */}
-      <section className="mt-5 rounded-2xl border border-line bg-surface p-4">
-        <div className="flex items-center gap-2 text-[11px] uppercase tracking-wide text-ink3">
-          <TrendingUp className="h-3.5 w-3.5 text-ink3" aria-hidden />
+      <section className="border-line bg-surface mt-5 rounded-2xl border p-4">
+        <div className="text-ink3 flex items-center gap-2 text-[11px] tracking-wide uppercase">
+          <TrendingUp className="text-ink3 h-3.5 w-3.5" aria-hidden />
           累计消耗
         </div>
-        <div className="mt-1 font-mono text-4xl font-bold tracking-tight text-ink tabular-nums">{consumed}</div>
-        <div className="mt-1 text-xs text-ink2">
+        <div className="text-ink mt-1 font-mono text-4xl font-bold tracking-tight tabular-nums">{consumed}</div>
+        <div className="text-ink2 mt-1 text-xs">
           {main ? `${main.name} 为主力模型 (${main.tokens})` : `活跃 ${summary?.active_days ?? 0} 天`}
         </div>
       </section>
@@ -91,7 +91,7 @@ function App() {
       {/* Sparkline: last 14 days */}
       {summary && summary.daily_token_usage.length > 0 && (
         <section className="mt-4">
-          <div className="mb-2 text-[11px] font-medium uppercase tracking-wide text-ink3">近 14 天消耗</div>
+          <div className="text-ink3 mb-2 text-[11px] font-medium tracking-wide uppercase">近 14 天消耗</div>
           <Sparkline values={summary.daily_token_usage} />
         </section>
       )}
@@ -102,8 +102,12 @@ function App() {
       {/* Footer stats */}
       {summary && (
         <section className="mt-4 grid grid-cols-2 gap-3">
-          <HeroStat label="活跃天数" value={String(summary.active_days)} sub={`连续 ${summary.current_consecutive_days} 天`} />
-          <HeroStat label="使用排行" value={`${summary.usage_ranking_percent.toFixed(1)}%`} sub="领先用户" />
+          <HeroStat
+            label="活跃天数"
+            value={String(summary.active_days)}
+            sub={`连续 ${summary.current_consecutive_days} 天`}
+          />
+          <HeroStat label="使用排行" value={`${summary.usage_ranking_percent.toFixed(1)}%`} sub="Top" />
         </section>
       )}
 
@@ -112,7 +116,7 @@ function App() {
           type="button"
           onClick={handleRefresh}
           disabled={loading || refreshing}
-          className="inline-flex items-center gap-1.5 rounded-full bg-ember px-3 py-1.5 text-xs font-medium text-white transition-[scale,opacity] duration-150 active:scale-95 disabled:opacity-50"
+          className="bg-ember inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium text-white transition-[scale,opacity] duration-150 active:scale-95 disabled:opacity-50"
         >
           <RefreshCw className={`h-3.5 w-3.5 ${refreshing ? 'animate-spin' : ''}`} aria-hidden />
           {refreshing ? '刷新中' : '刷新'}
@@ -126,7 +130,7 @@ function App() {
           开放平台
           <ExternalLink className="h-3 w-3" aria-hidden />
         </a>
-        {error && <span className="text-xs text-red">{error}</span>}
+        {error && <span className="text-red text-xs">{error}</span>}
       </div>
     </div>
   );

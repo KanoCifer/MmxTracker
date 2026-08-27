@@ -52,7 +52,7 @@ export function ExpandedPanel({
               onClick={onRefresh}
               disabled={refreshDisabled}
               aria-label="刷新"
-              className="text-ink2 hover:text-ink rounded p-0.5 transition-colors disabled:opacity-50"
+              className="text-ink2 hover:text-ink cursor-pointer rounded p-0.5 transition-colors disabled:opacity-50"
             >
               <RefreshCw className={`h-3 w-3 ${refreshing ? 'animate-spin' : ''}`} aria-hidden />
             </button>
