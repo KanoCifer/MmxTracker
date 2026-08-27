@@ -1,4 +1,4 @@
-import { Flame, RefreshCw, TrendingUp } from 'lucide-react';
+import { Flame, RefreshCw, TrendingUp, ExternalLink } from 'lucide-react';
 import { useUsage } from '@/lib/useUsage';
 import { QuotaMeter } from './QuotaMeter';
 import { useState } from 'react';
@@ -117,6 +117,15 @@ function App() {
           <RefreshCw className={`h-3.5 w-3.5 ${refreshing ? 'animate-spin' : ''}`} aria-hidden />
           {refreshing ? '刷新中' : '刷新'}
         </button>
+        <a
+          href="https://platform.minimaxi.com/console/usage"
+          target="_blank"
+          rel="noreferrer"
+          className="text-ink2 hover:text-ink inline-flex items-center gap-1 text-xs transition-colors"
+        >
+          开放平台
+          <ExternalLink className="h-3 w-3" aria-hidden />
+        </a>
         {error && <span className="text-xs text-red">{error}</span>}
       </div>
     </div>

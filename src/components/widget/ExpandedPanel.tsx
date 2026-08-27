@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ChevronDown, RefreshCw } from 'lucide-react';
+import { ChevronDown, ExternalLink, RefreshCw } from 'lucide-react';
 import { MascotBadge } from './MascotBadge';
 import { ModelUsageRow } from './ModelUsageRow';
 import { WeeklyQuotaLine } from './WeeklyQuotaLine';
@@ -46,15 +46,26 @@ export function ExpandedPanel({
           <div className="flex items-center gap-1.5">
             <span className="text-ink3 text-[10px] font-medium tracking-wider uppercase">累计消耗</span>
           </div>
-          <button
-            type="button"
-            onClick={onRefresh}
-            disabled={refreshDisabled}
-            aria-label="刷新"
-            className="text-ink2 hover:text-ink rounded p-0.5 transition-colors disabled:opacity-50"
-          >
-            <RefreshCw className={`h-3 w-3 ${refreshing ? 'animate-spin' : ''}`} aria-hidden />
-          </button>
+          <div className="flex items-center gap-0.5">
+            <button
+              type="button"
+              onClick={onRefresh}
+              disabled={refreshDisabled}
+              aria-label="刷新"
+              className="text-ink2 hover:text-ink rounded p-0.5 transition-colors disabled:opacity-50"
+            >
+              <RefreshCw className={`h-3 w-3 ${refreshing ? 'animate-spin' : ''}`} aria-hidden />
+            </button>
+            <a
+              href="https://platform.minimaxi.com/console/usage"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="打开开放平台"
+              className="text-ink2 hover:text-ink rounded p-0.5 transition-colors"
+            >
+              <ExternalLink className="h-3 w-3" aria-hidden />
+            </a>
+          </div>
         </div>
 
         <div className="flex items-baseline gap-2">
