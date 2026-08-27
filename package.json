@@ -1,6 +1,6 @@
 {
-  "name": "wxt-react-starter",
-  "description": "manifest.json description",
+  "name": "mmx-tracker",
+  "description": "To track your Minimax Token Plan",
   "private": true,
   "version": "0.1.2",
   "type": "module",
