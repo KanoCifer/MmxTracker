@@ -9,6 +9,7 @@ import { useCountdown } from './useCountdown';
 import type { RefreshState, WidgetSignals } from '@/lib/types';
 
 interface Props extends WidgetSignals, RefreshState {
+  posY: number;
   onCollapse: () => void;
 }
 
@@ -25,6 +26,7 @@ export function ExpandedPanel({
   refreshing,
   onRefresh,
   onCollapse,
+  posY,
 }: Props) {
   const countdown = useCountdown(nextResetMs);
   const refreshDisabled = loading || refreshing;
@@ -32,8 +34,8 @@ export function ExpandedPanel({
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: posY }}
+      animate={{ opacity: 1, y: posY }}
       exit={{ opacity: 0 }}
       className="fixed right-4 bottom-4"
     >

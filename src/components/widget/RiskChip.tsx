@@ -9,19 +9,22 @@ const TAP_SLOP_PX = 5;
 interface Props {
   worstUsedPct: number;
   tone: Tone;
+  posY: number;
+  onMoveY: (y: number) => void;
   onExpand: () => void;
 }
 
-export function RiskChip({ worstUsedPct, tone, onExpand }: Props) {
+export function RiskChip({ worstUsedPct, tone, posY, onMoveY, onExpand }: Props) {
   const pressStart = useRef<{ x: number; y: number } | null>(null);
 
   return (
     <motion.div
       drag
       dragMomentum={false}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 0.5 }}
+      initial={{ opacity: 0, x: 0, y: posY }}
+      animate={{ opacity: 0.5, x: 0, y: posY }}
       exit={{ opacity: 0 }}
+      onDragEnd={(_, info) => onMoveY(posY + info.offset.y)}
       whileHover={{
         opacity: 1,
         x: -100,
